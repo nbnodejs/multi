@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t nbnodejs/react -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker container run nbnodejs/react npm test -- --coverage
+
+after_success:
+  - docker image build -t nbnodejs/multi-client ./client 
+  - docker image build -t nbnodejs/multi-nginx ./nginx
+  - docker image build -t nbnodejs/multi-api ./api
+  - docker image build -t nbnodejs/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
