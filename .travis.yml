@@ -13,3 +13,7 @@ after_success:
   - docker image build -t nbnodejs/multi-api ./api
   - docker image build -t nbnodejs/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+  - docker image push nbnodejs/multi-client
+  - docker image push nbnodejs/multi-nginx
+  - docker image push nbnodejs/multi-api
+  - docker image push nbnodejs/multi-worker
