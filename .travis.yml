@@ -21,9 +21,9 @@ after_success:
 deploy:
   proivder: elasticbeanstalk
   region: us-east-2
-  app: "multi-docker"
-  env: "MultiDocker-env"
-  bucketname: "elasticbeanstalk-us-east-2-804521895129"
+  app: multi-docker
+  env: MultiDocker-env-1
+  bucketname: elasticbeanstalk-us-east-2-804521895129
   bucket_path: docker-multi
   on:
     branch: master
