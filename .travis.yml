@@ -17,3 +17,15 @@ after_success:
   - docker image push nbnodejs/multi-nginx
   - docker image push nbnodejs/multi-api
   - docker image push nbnodejs/multi-worker
+
+deploy:
+  proivder: elasticbeanstalk
+  region: us-east-2
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucketname: "elasticbeanstalk-us-east-2-804521895129"
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

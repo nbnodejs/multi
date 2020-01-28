@@ -1,0 +1,42 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+         "name": "api",
+         "hostname": "api",
+         "image": "nbnodejs/multi-api",
+         "essential": false,
+         "memory": 128
+        },
+        {
+            "name": "client",
+            "hostname": "client",
+            "image": "nbnodejs/multi-client",
+            "essential": false,
+            "memory": 128  
+        },
+        {
+            "name": "worker",
+            "hostname": "worker",
+            "image": "nbnodejs/multi-worker",
+            "essential": false,
+            "memory": 128 
+        },
+        {
+            "name": "nginx",
+            "hostname": "nginx",
+            "image": "nbnodejs/multi-nginx",
+            "essential": true,
+            "memory": 128,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": [
+                "api","client"
+            ]
+        }
+    ]
+}
